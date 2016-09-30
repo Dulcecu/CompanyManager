@@ -9,6 +9,7 @@ import java.util.HashMap;
 public class Manager implements CompanyManager {
     HashMap<String, Department> departments;
     ArrayList<Employee> employees;
+    ArrayList<Sales> totalsales;
 
     @Override
     public void addDepartment(String name,String description) {
@@ -39,7 +40,12 @@ public class Manager implements CompanyManager {
 
     @Override
     public ArrayList<Department> Departmens() {
-        return null;
+        ArrayList<Department> Departmens = new ArrayList<Department>();
+        for (int i=0;i<departments.size();i++){
+            Departmens.add(departments.get(i));
+        }
+
+        return Departmens;
     }
 
     @Override
@@ -53,8 +59,9 @@ public class Manager implements CompanyManager {
     }
 
     @Override
-    public void addSale(String name, int sale, double amount) {
-
+    public void addSale(String DNI, int sale, double amount) {
+        Sales sales = new Sales(DNI,sale,amount);
+        totalsales.add(sales);
     }
 
     @Override
