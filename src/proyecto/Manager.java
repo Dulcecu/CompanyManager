@@ -1,6 +1,8 @@
 package proyecto;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 
 /**
@@ -8,7 +10,6 @@ import java.util.HashMap;
  */
 public class Manager implements CompanyManager {
     HashMap<String, Department> departments= new HashMap<String,Department>();
-    ArrayList<Sales> totalsales;
     HashMap<String,Employee> employees= new HashMap<String,Employee>();
 
 
@@ -59,12 +60,19 @@ public class Manager implements CompanyManager {
     public ArrayList<Employee> EmployerBySalary() {
         ArrayList<Department> dep = new ArrayList<Department>(departments.values());
         ArrayList<Employee> emp= new ArrayList<Employee>();
-        for(int i=0;i<dep.size();i=0)
+
+        for(int i=0;i<dep.size();i++)
         {
-            ArrayList<Employee> emp1= new ArrayList<Employee>();
+            ArrayList<Employee> emp1;
             emp1=dep.get(i).salaries();
             emp.addAll(emp1);
         }
+        Collections.sort(emp, new Comparator<Employee>() {
+            @Override
+            public int compare(Employee o1, Employee o2) {
+                return new Double(o2.returnSalary()).compareTo(new Double(o1.returnSalary()));
+            }
+        });
         return emp;
     }
 
@@ -87,7 +95,6 @@ public class Manager implements CompanyManager {
         emp.addsale(sales);
         dep.update(emp);
         departments.put(dep.name,dep);
-        totalsales.add(sales);
     }
 
     @Override

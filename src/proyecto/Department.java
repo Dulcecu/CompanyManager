@@ -53,7 +53,7 @@ public class Department {
             double salary = emp.salary;
             /*SALES MAN*/
             if (emp.category == 1) {
-                for (int j = 0; j < emp.empsales.size(); j++) {
+                for (int j = 0; j < emp.empsales.size()-1; j++) {
                     salary = salary + 0.1 * emp.empsales.get(j).amount;
                 }
 
@@ -79,6 +79,7 @@ public class Department {
         });
         return employ;
     }
+
 
 }
 
