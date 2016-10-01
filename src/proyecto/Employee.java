@@ -29,4 +29,11 @@ public class Employee{
     public void addsale(Sales s){
         empsales.add(s);
     }
+    public double returnSalary(){
+        return this.salary;
+    }
+
+
+
+
 }
