@@ -1,21 +1,20 @@
 package proyecto;
 
-import java.util.AbstractCollection;
 import java.util.ArrayList;
 
 public class Main {
 
     public static void main(String[] args) {
         CompanyManager man = new Manager();
-        man.addDepartment("DET","Departamento Especial de Tecnologia");
-        man.addDepartment("IT","Informatica y Tecnologia");
-        man.addDepartment("DDS","Departamento de Distribucion y Servicios");
+        man.addDepartment("DET","Tecnologia");
+        man.addDepartment("IT","Informatica");
+        man.addDepartment("DDS","Distribución");
 
         man.addEmployee("666J","Dolc",100,"DET");
         man.addEmployee("69F","Llas",50,"DET");
         man.addDirector("1337A","Grig",1000,"DET");
 
-        man.addEmployee("100T","T",100,"IT");
+        man.addEmployee("100T","Tirojeta",100,"IT");
         man.addSalesMan("300K","Cojo",500,"IT");
         man.addDirector("27C","Lobo",20,"IT");
 
@@ -23,23 +22,27 @@ public class Main {
         man.addSalesMan("110R","Yisas",200,"DDS");
         man.addDirector("999H","Gunzi",1000,"DDS");
 
-        man.addSale("110R",1,1000);
-        man.addSale("300K",1,5000);
+        man.addSale("110R",1,1000);//Añadir venta a Yisas
+        man.addSale("300K",1,5000);//Es la primera venta y por eso ponemos el 1 para ser mas amigable
 
-        ArrayList<Department> dep = man.returnDepartmens();
-        for(int i=0;i<dep.size();i++){
-            System.out.println(dep.get(i).description);
+        ArrayList<Department> dep = man.returnDepartments();
+        for (int i = 0; i<dep.size();i++){  //Imprimir los tres departamentos
+            System.out.println(dep.get(i).name);
         }
 
-        ArrayList<Employee> emp;
-        /*emp= man.EmployeeByDepartment("IT");
-        for(int i=0;i<emp.size();i++){
-            System.out.println(emp.get(i).name);
-        }*/
-        emp=man.EmployerBySalary();
-        for(int i=0;i<emp.size();i++){
+        ArrayList<Employee> emp = man.EmployeeByDepartment("IT");
+        for (int i = 0; i<emp.size();i++){ //Imprimir los empleados del departamento
             System.out.println(emp.get(i).name);
         }
+
+        ArrayList<Employee>empl = man.EmployeeBySalary();
+        for (int i = 0; i<empl.size();i++){ //Imprimir los empleados
+            System.out.println(empl.get(i).name);
+        }
+
+        double salaries = man.Salaries();
+        System.out.println(salaries);
+
 
 
     }
